@@ -1,0 +1,106 @@
+import math
+import telebot
+from datetime import datetime
+bot = telebot.TeleBot('1425287177:AAEIVf1AX2OTXslgyExGbuj3sx-EYGmJSYQ')
+
+day = datetime.today().weekday()
+timee = str(datetime.now()).split(" ")[1]
+current = (int(timee.split(":")[0]))
+
+who_is_now = 0
+
+@bot.message_handler(content_types=['text'])
+def get_text_messages(message):
+    global who_is_now
+    if message.text == "Привет" or message.text == "привет":
+        if who_is_now == 0:
+            bot.send_message(message.from_user.id, "Привет, как тебя зовут?")
+
+    if message.text == "Костя":
+        bot.send_message(message.from_user.id, "Рад тебя видеть, Костя!")
+        who_is_now = 1
+
+    if message.text == "Лиза":
+        bot.send_message(message.from_user.id, "Рад тебя видеть, Лиза!")
+        who_is_now = 2
+        bot.send_message(message.from_user.id, "Какая сейчас неделя?")
+
+    if message.text == "Амелия":
+        bot.send_message(message.from_user.id, "Рад тебя видеть, Амелия!")
+        who_is_now = 3
+
+    print(who_is_now)
+    print(message.chat.id)
+
+    if who_is_now == 1:
+        if day == 6 and int(current) > 15 or day == 0 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Понедельник:\nВставать в 8.20\nВыходить в 9.15")
+        if day == 0 and int(current) > 15 or day == 1 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Вторник:\nВставать в 6.50\nВыходить в 7.30")
+        if day == 1 and int(current) > 15 or day == 2 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Среда:\nВставать в 8.00-8.30\nЗавтра лекции!)")
+        if day == 2 and int(current) > 15 or day == 3 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Четверг:\nВставать в 8.20\nВыходить в 9.15")
+        if day == 3 and int(current) > 15 or day == 4 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Пятница:\nВставать в 8.00-8.30\nЗавтра лекции!)")
+        if day == 4 and int(current) > 15 or day == 5 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Суббота:\nСпи спокойно, завтра нет пар")
+        if day == 5 and int(current) > 15 or day == 6 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Воскресенье:\nСпи спокойно, завтра нет пар")
+        who_is_now = 0
+
+
+    if who_is_now == 2 and (message.text == "Чётная" or message.text == "Четная" or message.text == "четная" or message.text == "чётная"):
+        if day == 6 and int(current) > 15 or day == 0 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Понедельник:\nСтромынка\nВставать в 10.30\nВыходить в 11.10")
+        if day == 0 and int(current) > 15 or day == 1 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Вторник:\nСпи спокойно, завтра нет пар")
+        if day == 1 and int(current) > 15 or day == 2 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Среда:\nВернадка\nВставать в 10.30\nВыходить в 11.10")
+        if day == 2 and int(current) > 15 or day == 3 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Четверг:\nСтромынка\nВставать в 7.00\nВыходить в 7.30")
+        if day == 3 and int(current) > 15 or day == 4 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Пятница:\nВставать в 12.30\nЗавтра лекции!)")
+        if day == 4 and int(current) > 15 or day == 5 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Суббота:\nВставать в 8.50\nЗавтра лекции!)")
+        if day == 5 and int(current) > 15 or day == 6 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Воскресенье:\nСпи спокойно, завтра нет пар")
+        who_is_now = 0
+
+    if who_is_now == 2 and (message.text == "Нечётная" or message.text == "Нечетная" or message.text == "нечетная" or message.text == "нечётная"):
+        if day == 6 and int(current) > 15 or day == 0 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Понедельник:\nСтромынка\nВставать в 8.30\nВыходить в 9.10")
+        if day == 0 and int(current) > 15 or day == 1 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Вторник:\nВставать в 8.50\nЗавтра лекции!)")
+        if day == 1 and int(current) > 15 or day == 2 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Среда:\nВставать в 10.30\nЗавтра лекции!)")
+        if day == 2 and int(current) > 15 or day == 3 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Четверг:\nСтромынка\nВставать в 7.00\nВыходить в 7.30")
+        if day == 3 and int(current) > 15 or day == 4 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Пятница:\nВставать в 12.30\nЗавтра лекции!)")
+        if day == 4 and int(current) > 15 or day == 5 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Суббота:\nСпи спокойно, завтра нет пар")
+        if day == 5 and int(current) > 15 or day == 6 and int(current) < 4:
+            bot.send_message(message.from_user.id, "Воскресенье:\nСпи спокойно, завтра нет пар")
+        who_is_now = 0
+
+    if who_is_now == 3:
+        if day == 0:
+            bot.send_message(message.from_user.id, "Понедельник:\nсегодня химия в 20.00 ")
+        if day == 1:
+            bot.send_message(message.from_user.id, "Вторник:\nсегодня биология в 19.00 ")
+        if day == 2:
+            bot.send_message(message.from_user.id, "Среда:\nсегодня химия в 20.00 ")
+        if day == 3:
+            bot.send_message(message.from_user.id, "Четверг:\nсегодня биология в 19.00 ")
+        if day == 4:
+            bot.send_message(message.from_user.id, "Пятница:\nсегодня химия в 20.00 ")
+        if day == 5:
+            bot.send_message(message.from_user.id, "Суббота:\nсегодня биология в 19.00 ")
+        if day == 6:
+            bot.send_message(message.from_user.id, "Воскресенье:\nсегодня биология в 19.00")
+        who_is_now = 0
+
+
+bot.polling()
+
